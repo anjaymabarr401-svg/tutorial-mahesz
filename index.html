@@ -4,47 +4,158 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ff3366">
-  <meta name="description" content="Tutorial lengkap cara pake bot cPanel MHESZ KASEP">
+  <meta name="description" content="Tutorial lengkap cara pake bot cPanel MHESZ KASEP — bikin panel gratis, create instan, jasa pasang, dan fitur lainnya.">
+  <meta name="keywords" content="tutorial bot cpanel, MHESZ KASEP, panel gratis, bot telegram panel">
   <title>📖 Tutorial — MHESZ KASEP</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --pink: #ff3366;
+      --purple: #8833ff;
+      --blue: #33bbff;
+      --green: #33ff88;
+      --bg-dark: #0f0f14;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #fff;
+      --text-dim: #a1a1aa;
+      --text-muted: #71717a;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
       background: linear-gradient(135deg, #0f0f14 0%, #1a0f1f 50%, #2d1b2e 100%);
       background-attachment: fixed;
-      color: #fff;
+      color: var(--text);
       min-height: 100vh;
       padding: 16px;
       line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    .container { max-width: 900px; margin: 0 auto; }
+    /* ═══ BACKGROUND ORBS ═══ */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 {
+      width: 350px; height: 350px;
+      background: var(--pink);
+      top: -80px; left: -100px;
+      animation: floatOrb 12s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 320px; height: 320px;
+      background: var(--purple);
+      top: 45%; right: -120px;
+      animation: floatOrb 15s ease-in-out infinite reverse;
+    }
+    .orb-3 {
+      width: 280px; height: 280px;
+      background: var(--blue);
+      bottom: -100px; left: 30%;
+      animation: floatOrb 18s ease-in-out infinite;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -50px) scale(1.15); }
+    }
+
+    .container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
 
     /* ═══ HEADER ═══ */
-    .header { text-align: center; padding: 24px 16px; }
+    .header {
+      text-align: center;
+      padding: 40px 16px 24px;
+    }
+    .header .badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: rgba(255, 51, 102, 0.12);
+      border: 1px solid rgba(255, 51, 102, 0.3);
+      color: var(--pink);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
     .header h1 {
-      font-size: 28px;
-      background: linear-gradient(90deg, #ff3366, #8833ff, #33bbff);
+      font-size: clamp(24px, 6vw, 40px);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue), var(--pink));
+      background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 8px;
-      letter-spacing: 0.5px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      animation: gradientShift 6s ease infinite;
+      filter: drop-shadow(0 0 30px rgba(255, 51, 102, 0.35));
+      margin-bottom: 10px;
     }
-    .header p { color: #999; font-size: 13px; }
+    .header p {
+      color: var(--text-dim);
+      font-size: 13.5px;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
 
     /* ═══ VIDEO ═══ */
+    .video-outer {
+      position: relative;
+      margin-bottom: 26px;
+    }
+    .video-glow {
+      position: absolute;
+      inset: -3px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      filter: blur(18px);
+      opacity: 0.55;
+      z-index: 0;
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.45; }
+      50% { opacity: 0.75; }
+    }
     .video-wrapper {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
       border-radius: 16px;
-      box-shadow: 0 10px 50px rgba(255, 51, 102, 0.35);
-      margin-bottom: 24px;
       background: #000;
+      z-index: 1;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
     }
     .video-wrapper video {
       position: absolute;
@@ -56,43 +167,78 @@
 
     /* ═══ SECTION CARD ═══ */
     .section {
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--bg-card);
       border-radius: 16px;
-      padding: 20px;
+      padding: 22px;
       margin-bottom: 16px;
-      border-left: 4px solid #ff3366;
+      border-left: 4px solid var(--pink);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
-    .section.blue   { border-left-color: #33bbff; }
-    .section.purple { border-left-color: #8833ff; }
-    .section.green  { border-left-color: #33ff88; }
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at top left, rgba(255, 51, 102, 0.08), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .section:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 51, 102, 0.35);
+      box-shadow: 0 12px 40px rgba(255, 51, 102, 0.15);
+    }
+    .section:hover::before { opacity: 1; }
+
+    .section.blue   { border-left-color: var(--blue); }
+    .section.purple { border-left-color: var(--purple); }
+    .section.green  { border-left-color: var(--green); }
+    .section.blue:hover   { box-shadow: 0 12px 40px rgba(51, 187, 255, 0.15); border-color: rgba(51, 187, 255, 0.35); }
+    .section.purple:hover { box-shadow: 0 12px 40px rgba(136, 51, 255, 0.15); border-color: rgba(136, 51, 255, 0.35); }
+    .section.green:hover  { box-shadow: 0 12px 40px rgba(51, 255, 136, 0.15); border-color: rgba(51, 255, 136, 0.35); }
 
     .section h2 {
       font-size: 18px;
       margin-bottom: 14px;
-      color: #ff3366;
+      color: var(--pink);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
     }
-    .section.blue h2   { color: #33bbff; }
-    .section.purple h2 { color: #8833ff; }
-    .section.green h2  { color: #33ff88; }
+    .section h2 i {
+      font-size: 20px;
+      filter: drop-shadow(0 0 12px rgba(255, 51, 102, 0.6));
+    }
+    .section.blue h2   { color: var(--blue); }
+    .section.purple h2 { color: var(--purple); }
+    .section.green h2  { color: var(--green); }
+    .section.blue h2 i   { filter: drop-shadow(0 0 12px rgba(51, 187, 255, 0.6)); }
+    .section.purple h2 i { filter: drop-shadow(0 0 12px rgba(136, 51, 255, 0.6)); }
+    .section.green h2 i  { filter: drop-shadow(0 0 12px rgba(51, 255, 136, 0.6)); }
 
     .section ol, .section ul {
       padding-left: 22px;
       color: #ddd;
       font-size: 14px;
     }
-    .section ol li, .section ul li { margin-bottom: 8px; }
+    .section ol li, .section ul li { margin-bottom: 10px; position: relative; }
     .section b { color: #fff; }
     .section code {
       background: rgba(0, 0, 0, 0.4);
       padding: 2px 8px;
       border-radius: 6px;
-      font-family: 'Courier New', monospace;
-      color: #ff3366;
-      font-size: 13px;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      color: var(--pink);
+      font-size: 12.5px;
     }
 
     /* ═══ FITUR GRID ═══ */
@@ -104,43 +250,89 @@
     }
     .fitur-item {
       background: rgba(255, 255, 255, 0.05);
-      padding: 12px;
+      padding: 16px 10px;
       border-radius: 12px;
       text-align: center;
       font-size: 12px;
       color: #ddd;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .fitur-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255, 51, 102, 0.15), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .fitur-item i {
+      font-size: 22px;
+      display: block;
+      margin-bottom: 8px;
+      color: var(--pink);
+      transition: transform 0.35s ease, color 0.3s ease;
+      filter: drop-shadow(0 0 8px rgba(255, 51, 102, 0.5));
     }
     .fitur-item:hover {
       background: rgba(255, 51, 102, 0.1);
-      border-color: #ff3366;
-      transform: translateY(-3px);
+      border-color: var(--pink);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 10px 24px rgba(255, 51, 102, 0.25);
     }
-    .fitur-item .ico {
-      font-size: 26px;
-      display: block;
-      margin-bottom: 6px;
+    .fitur-item:hover::after { opacity: 1; }
+    .fitur-item:hover i {
+      transform: scale(1.2) rotate(-8deg);
+      color: #fff;
     }
 
     /* ═══ DEV BOX ═══ */
     .dev-box {
       background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(136, 51, 255, 0.1));
       border-radius: 16px;
-      padding: 24px 20px;
+      padding: 30px 20px;
       margin-bottom: 16px;
       border: 1px solid rgba(255, 51, 102, 0.3);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .dev-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 50px rgba(255, 51, 102, 0.25);
+    }
+    .dev-box::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(255, 51, 102, 0.15), transparent 30%);
+      animation: rotateConic 8s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rotateConic {
+      to { transform: rotate(360deg); }
+    }
+    .dev-box > * { position: relative; z-index: 1; }
+
     .dev-box .emoji {
       font-size: 52px;
       margin-bottom: 8px;
       display: block;
+      animation: bounce 3s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
     .dev-box .name {
-      font-size: 20px;
-      font-weight: bold;
-      background: linear-gradient(90deg, #ff3366, #8833ff);
+      font-size: 22px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -153,52 +345,70 @@
     }
     .dev-box p {
       color: #ccc;
-      font-size: 13px;
-      margin-bottom: 18px;
-      line-height: 1.7;
+      font-size: 13.5px;
+      margin-bottom: 20px;
+      line-height: 1.75;
     }
     .dev-box .contact {
-      display: inline-block;
-      padding: 10px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
       background: rgba(255, 51, 102, 0.15);
-      border: 1px solid #ff3366;
+      border: 1px solid var(--pink);
       border-radius: 25px;
-      color: #ff3366;
+      color: var(--pink);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 14px;
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .dev-box .contact:hover {
-      background: #ff3366;
+      background: var(--pink);
       color: #fff;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(255, 51, 102, 0.5);
     }
 
     /* ═══ CTA ═══ */
     .cta {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       width: 100%;
       text-align: center;
-      padding: 16px;
-      background: linear-gradient(90deg, #ff3366, #8833ff);
+      padding: 17px;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
       color: #fff;
       text-decoration: none;
       border-radius: 14px;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 16px;
       margin-top: 16px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
       box-shadow: 0 8px 25px rgba(255, 51, 102, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transition: left 0.6s;
     }
     .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 35px rgba(255, 51, 102, 0.5);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 40px rgba(255, 51, 102, 0.55);
     }
+    .cta:hover::before { left: 100%; }
 
     /* ═══ FOOTER ═══ */
     .footer {
       text-align: center;
-      padding: 24px 16px;
+      padding: 30px 16px;
       color: #666;
       font-size: 12px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -206,43 +416,96 @@
     }
     .footer .brand {
       font-size: 14px;
-      background: linear-gradient(90deg, #ff3366, #8833ff);
+      background: linear-gradient(90deg, var(--pink), var(--purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      font-weight: bold;
-      margin-bottom: 6px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ═══ BACK TO TOP ═══ */
+    .back-top {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 51, 102, 0.5);
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 8px 24px rgba(255, 51, 102, 0.45);
+      z-index: 999;
+    }
+    .back-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .back-top:hover {
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 12px 32px rgba(255, 51, 102, 0.7);
     }
 
     /* ═══ RESPONSIVE ═══ */
     @media (max-width: 600px) {
-      .header h1 { font-size: 22px; }
+      .header { padding: 30px 16px 20px; }
+      .section { padding: 18px; }
       .section h2 { font-size: 16px; }
-      .section { padding: 16px; }
-      .dev-box .emoji { font-size: 42px; }
+      .section h2 i { font-size: 18px; }
+      .dev-box .emoji { font-size: 44px; }
+      .dev-box .name { font-size: 19px; }
+      .fitur-item { padding: 12px 8px; }
+      .fitur-item i { font-size: 20px; }
+      .back-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Background Orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
   <div class="container">
 
     <!-- ═══ HEADER ═══ -->
-    <div class="header">
+    <div class="header" data-aos="fade-down">
+      <div class="badge-top">
+        <i class="fa-solid fa-book-open"></i> PANDUAN RESMI
+      </div>
       <h1>📖 TUTORIAL MHESZ KASEP</h1>
       <p>Panduan lengkap cara pake bot cPanel</p>
     </div>
 
     <!-- ═══ VIDEO ═══ -->
-    <div class="video-wrapper">
-      <video controls preload="metadata" playsinline>
-        <source src="https://cdn.jsdelivr.net/gh/anjaymabarr401-svg/tutorial-mahesz@main/Screen_Recording_20261009_202012.mp4" type="video/mp4">
-        Browser lu gak support video tag.
-      </video>
+    <div class="video-outer" data-aos="zoom-in">
+      <div class="video-glow"></div>
+      <div class="video-wrapper">
+        <video controls preload="metadata" playsinline>
+          <source src="https://cdn.jsdelivr.net/gh/anjaymabarr401-svg/tutorial-mahesz@main/Screen_Recording_20261009_202012.mp4" type="video/mp4">
+          Browser lu gak support video tag.
+        </video>
+      </div>
     </div>
 
     <!-- ═══ STEP BY STEP ═══ -->
-    <div class="section">
-      <h2>📌 CARA PAKE BOT</h2>
+    <div class="section" data-aos="fade-up">
+      <h2><i class="fa-solid fa-list-check"></i> CARA PAKE BOT</h2>
       <ol>
         <li>Klik <b>ADD AKSES</b> di menu utama bot (GRATIS)</li>
         <li>Pilih <b>masa aktif reseller</b> (1 minggu / 1 bulan / permanen)</li>
@@ -254,23 +517,23 @@
     </div>
 
     <!-- ═══ FITUR UTAMA ═══ -->
-    <div class="section blue">
-      <h2>🎁 FITUR UTAMA</h2>
+    <div class="section blue" data-aos="fade-up" data-aos-delay="50">
+      <h2><i class="fa-solid fa-gift"></i> FITUR UTAMA</h2>
       <div class="fitur-grid">
-        <div class="fitur-item"><span class="ico">🖥️</span>Panel cPanel</div>
-        <div class="fitur-item"><span class="ico">🚀</span>Create Instan</div>
-        <div class="fitur-item"><span class="ico">🛒</span>Buy Script</div>
-        <div class="fitur-item"><span class="ico">🎨</span>Jasa Pasang</div>
-        <div class="fitur-item"><span class="ico">🎫</span>Voucher Diskon</div>
-        <div class="fitur-item"><span class="ico">⚡</span>Fast Response</div>
-        <div class="fitur-item"><span class="ico">🛡️</span>Anti-Miner</div>
-        <div class="fitur-item"><span class="ico">📊</span>Auto Restart</div>
+        <div class="fitur-item"><i class="fa-solid fa-desktop"></i>Panel cPanel</div>
+        <div class="fitur-item"><i class="fa-solid fa-rocket"></i>Create Instan</div>
+        <div class="fitur-item"><i class="fa-solid fa-cart-shopping"></i>Buy Script</div>
+        <div class="fitur-item"><i class="fa-solid fa-palette"></i>Jasa Pasang</div>
+        <div class="fitur-item"><i class="fa-solid fa-ticket"></i>Voucher Diskon</div>
+        <div class="fitur-item"><i class="fa-solid fa-bolt"></i>Fast Response</div>
+        <div class="fitur-item"><i class="fa-solid fa-shield-halved"></i>Anti-Miner</div>
+        <div class="fitur-item"><i class="fa-solid fa-chart-column"></i>Auto Restart</div>
       </div>
     </div>
 
     <!-- ═══ BUTUH BANTUAN ═══ -->
-    <div class="section purple">
-      <h2>💡 BUTUH BANTUAN?</h2>
+    <div class="section purple" data-aos="fade-up" data-aos-delay="100">
+      <h2><i class="fa-solid fa-lightbulb"></i> BUTUH BANTUAN?</h2>
       <ol>
         <li>Buka <b>MENU UTAMA</b> di bot</li>
         <li>Klik <b>CHAT DEV</b></li>
@@ -283,18 +546,18 @@
     </div>
 
     <!-- ═══ FAQ ═══ -->
-    <div class="section green">
-      <h2>❓ FAQ</h2>
+    <div class="section green" data-aos="fade-up" data-aos-delay="150">
+      <h2><i class="fa-solid fa-circle-question"></i> FAQ</h2>
       <ul style="list-style: none; padding-left: 0;">
-        <li style="margin-bottom: 12px;">
+        <li style="margin-bottom: 14px;">
           <b>Q: Beneran gratis?</b><br>
           <span style="color: #ccc; font-size: 13px;">A: Iya, 100% gratis. Gak ada biaya tersembunyi.</span>
         </li>
-        <li style="margin-bottom: 12px;">
+        <li style="margin-bottom: 14px;">
           <b>Q: Max bikin panel berapa?</b><br>
           <span style="color: #ccc; font-size: 13px;">A: Max 3 panel/hari per user.</span>
         </li>
-        <li style="margin-bottom: 12px;">
+        <li style="margin-bottom: 14px;">
           <b>Q: Panel ilang kalo bot mati?</b><br>
           <span style="color: #ccc; font-size: 13px;">A: Gak, data lu aman. Ada backup otomatis.</span>
         </li>
@@ -306,7 +569,7 @@
     </div>
 
     <!-- ═══ ABOUT DEV ═══ -->
-    <div class="dev-box">
+    <div class="dev-box" data-aos="zoom-in" data-aos-delay="200">
       <span class="emoji">👨‍💻</span>
       <div class="name">@maklov1</div>
       <div class="role">Owner & Developer — MHESZ KASEP</div>
@@ -316,20 +579,53 @@
         temen-temen yang butuh panel gratis & cepat.<br><br>
         <b>Fast • Secure • Premium</b> ⚡
       </p>
-      <a href="https://t.me/maklov1" class="contact" target="_blank">📞 Chat Dev</a>
+      <a href="https://t.me/maklov1" class="contact" target="_blank">
+        <i class="fa-brands fa-telegram"></i> Chat Dev
+      </a>
     </div>
 
     <!-- ═══ CTA ═══ -->
-    <a href="https://t.me/CpanelhzzBot" class="cta" target="_blank">
-      🚀 BUKA BOT TELEGRAM
+    <a href="https://t.me/CpanelhzzBot" class="cta" target="_blank" data-aos="fade-up" data-aos-delay="250">
+      <i class="fa-brands fa-telegram"></i> BUKA BOT TELEGRAM
     </a>
 
     <!-- ═══ FOOTER ═══ -->
     <div class="footer">
-      <div class="brand">⚡ #cpanel by cel kasep</div>
-      © 2025 MHESZ KASEP • All Rights Reserved
+      <div class="brand">
+        <i class="fa-solid fa-bolt"></i> #cpanel by cel kasep
+      </div>
+      <div>© <span id="year"></span> MHESZ KASEP • All Rights Reserved</div>
     </div>
 
   </div>
+
+  <!-- Back to Top -->
+  <button id="backTop" class="back-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 700,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 60,
+    });
+
+    // Year auto
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Back to top
+    const btn = document.getElementById('backTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) btn.classList.add('show');
+      else btn.classList.remove('show');
+    });
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
