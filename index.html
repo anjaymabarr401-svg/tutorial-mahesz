@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff3366">
+  <meta name="description" content="Tutorial lengkap cara pake bot cPanel MHESZ KASEP">
+  <title>📖 Tutorial — MHESZ KASEP</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #0f0f14 0%, #1a0f1f 50%, #2d1b2e 100%);
+      background-attachment: fixed;
+      color: #fff;
+      min-height: 100vh;
+      padding: 16px;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    /* ═══ HEADER ═══ */
+    .header { text-align: center; padding: 24px 16px; }
+    .header h1 {
+      font-size: 28px;
+      background: linear-gradient(90deg, #ff3366, #8833ff, #33bbff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .header p { color: #999; font-size: 13px; }
+
+    /* ═══ VIDEO ═══ */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 10px 50px rgba(255, 51, 102, 0.35);
+      margin-bottom: 24px;
+      background: #000;
+    }
+    .video-wrapper video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+
+    /* ═══ SECTION CARD ═══ */
+    .section {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-left: 4px solid #ff3366;
+      backdrop-filter: blur(10px);
+    }
+    .section.blue   { border-left-color: #33bbff; }
+    .section.purple { border-left-color: #8833ff; }
+    .section.green  { border-left-color: #33ff88; }
+
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 14px;
+      color: #ff3366;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section.blue h2   { color: #33bbff; }
+    .section.purple h2 { color: #8833ff; }
+    .section.green h2  { color: #33ff88; }
+
+    .section ol, .section ul {
+      padding-left: 22px;
+      color: #ddd;
+      font-size: 14px;
+    }
+    .section ol li, .section ul li { margin-bottom: 8px; }
+    .section b { color: #fff; }
+    .section code {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      color: #ff3366;
+      font-size: 13px;
+    }
+
+    /* ═══ FITUR GRID ═══ */
+    .fitur-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .fitur-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 12px;
+      color: #ddd;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s;
+    }
+    .fitur-item:hover {
+      background: rgba(255, 51, 102, 0.1);
+      border-color: #ff3366;
+      transform: translateY(-3px);
+    }
+    .fitur-item .ico {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* ═══ DEV BOX ═══ */
+    .dev-box {
+      background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(136, 51, 255, 0.1));
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 51, 102, 0.3);
+      text-align: center;
+    }
+    .dev-box .emoji {
+      font-size: 52px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .dev-box .name {
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff3366, #8833ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+    .dev-box .role {
+      color: #aaa;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .dev-box p {
+      color: #ccc;
+      font-size: 13px;
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+    .dev-box .contact {
+      display: inline-block;
+      padding: 10px 22px;
+      background: rgba(255, 51, 102, 0.15);
+      border: 1px solid #ff3366;
+      border-radius: 25px;
+      color: #ff3366;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .dev-box .contact:hover {
+      background: #ff3366;
+      color: #fff;
+    }
+
+    /* ═══ CTA ═══ */
+    .cta {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 16px;
+      background: linear-gradient(90deg, #ff3366, #8833ff);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 25px rgba(255, 51, 102, 0.3);
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(255, 51, 102, 0.5);
+    }
+
+    /* ═══ FOOTER ═══ */
+    .footer {
+      text-align: center;
+      padding: 24px 16px;
+      color: #666;
+      font-size: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 24px;
+    }
+    .footer .brand {
+      font-size: 14px;
+      background: linear-gradient(90deg, #ff3366, #8833ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 600px) {
+      .header h1 { font-size: 22px; }
+      .section h2 { font-size: 16px; }
+      .section { padding: 16px; }
+      .dev-box .emoji { font-size: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ═══ HEADER ═══ -->
+    <div class="header">
+      <h1>📖 TUTORIAL MHESZ KASEP</h1>
+      <p>Panduan lengkap cara pake bot cPanel</p>
+    </div>
+
+    <!-- ═══ VIDEO ═══ -->
+    <div class="video-wrapper">
+      <video controls preload="metadata" playsinline>
+        <source src="https://cdn.jsdelivr.net/gh/anjaymabarr401-svg/tutorial-mahesz@main/Screen_Recording_20261009_202012.mp4" type="video/mp4">
+        Browser lu gak support video tag.
+      </video>
+    </div>
+
+    <!-- ═══ STEP BY STEP ═══ -->
+    <div class="section">
+      <h2>📌 CARA PAKE BOT</h2>
+      <ol>
+        <li>Klik <b>ADD AKSES</b> di menu utama bot (GRATIS)</li>
+        <li>Pilih <b>masa aktif reseller</b> (1 minggu / 1 bulan / permanen)</li>
+        <li>Klik <b>CREATE PANEL</b> buat mulai bikin panel</li>
+        <li>Pilih <b>paket</b> (1 GB, 2 GB, dst) lalu kirim nama panel</li>
+        <li>Pilih <b>server & egg</b> yang lu mau</li>
+        <li>Panel jadi! <b>Data login dikirim ke DM</b> lu</li>
+      </ol>
+    </div>
+
+    <!-- ═══ FITUR UTAMA ═══ -->
+    <div class="section blue">
+      <h2>🎁 FITUR UTAMA</h2>
+      <div class="fitur-grid">
+        <div class="fitur-item"><span class="ico">🖥️</span>Panel cPanel</div>
+        <div class="fitur-item"><span class="ico">🚀</span>Create Instan</div>
+        <div class="fitur-item"><span class="ico">🛒</span>Buy Script</div>
+        <div class="fitur-item"><span class="ico">🎨</span>Jasa Pasang</div>
+        <div class="fitur-item"><span class="ico">🎫</span>Voucher Diskon</div>
+        <div class="fitur-item"><span class="ico">⚡</span>Fast Response</div>
+        <div class="fitur-item"><span class="ico">🛡️</span>Anti-Miner</div>
+        <div class="fitur-item"><span class="ico">📊</span>Auto Restart</div>
+      </div>
+    </div>
+
+    <!-- ═══ BUTUH BANTUAN ═══ -->
+    <div class="section purple">
+      <h2>💡 BUTUH BANTUAN?</h2>
+      <ol>
+        <li>Buka <b>MENU UTAMA</b> di bot</li>
+        <li>Klik <b>CHAT DEV</b></li>
+        <li>Ketik pertanyaan lu</li>
+        <li>Tunggu balasan max <b>1x24 jam</b></li>
+      </ol>
+      <p style="margin-top: 12px; font-size: 13px; color: #aaa;">
+        💡 <b>Tips:</b> Screenshot masalahnya biar Dev lebih gampang bantu.
+      </p>
+    </div>
+
+    <!-- ═══ FAQ ═══ -->
+    <div class="section green">
+      <h2>❓ FAQ</h2>
+      <ul style="list-style: none; padding-left: 0;">
+        <li style="margin-bottom: 12px;">
+          <b>Q: Beneran gratis?</b><br>
+          <span style="color: #ccc; font-size: 13px;">A: Iya, 100% gratis. Gak ada biaya tersembunyi.</span>
+        </li>
+        <li style="margin-bottom: 12px;">
+          <b>Q: Max bikin panel berapa?</b><br>
+          <span style="color: #ccc; font-size: 13px;">A: Max 3 panel/hari per user.</span>
+        </li>
+        <li style="margin-bottom: 12px;">
+          <b>Q: Panel ilang kalo bot mati?</b><br>
+          <span style="color: #ccc; font-size: 13px;">A: Gak, data lu aman. Ada backup otomatis.</span>
+        </li>
+        <li>
+          <b>Q: Kalo panel error gimana?</b><br>
+          <span style="color: #ccc; font-size: 13px;">A: Chat Dev aja, atau klaim garansi kode.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ═══ ABOUT DEV ═══ -->
+    <div class="dev-box">
+      <span class="emoji">👨‍💻</span>
+      <div class="name">@maklov1</div>
+      <div class="role">Owner & Developer — MHESZ KASEP</div>
+      <p>
+        Halo! Gua Maklov, developer bot ini.<br>
+        Bikin MHESZ KASEP karena pengen bantu<br>
+        temen-temen yang butuh panel gratis & cepat.<br><br>
+        <b>Fast • Secure • Premium</b> ⚡
+      </p>
+      <a href="https://t.me/maklov1" class="contact" target="_blank">📞 Chat Dev</a>
+    </div>
+
+    <!-- ═══ CTA ═══ -->
+    <a href="https://t.me/CpanelhzzBot" class="cta" target="_blank">
+      🚀 BUKA BOT TELEGRAM
+    </a>
+
+    <!-- ═══ FOOTER ═══ -->
+    <div class="footer">
+      <div class="brand">⚡ #cpanel by cel kasep</div>
+      © 2025 MHESZ KASEP • All Rights Reserved
+    </div>
+
+  </div>
+</body>
+</html>
