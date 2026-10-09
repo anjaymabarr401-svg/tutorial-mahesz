@@ -1,631 +1,1172 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ff3366">
-  <meta name="description" content="Tutorial lengkap cara pake bot cPanel MHESZ KASEP — bikin panel gratis, create instan, jasa pasang, dan fitur lainnya.">
-  <meta name="keywords" content="tutorial bot cpanel, MHESZ KASEP, panel gratis, bot telegram panel">
-  <title>📖 Tutorial — MHESZ KASEP</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff3366">
+<meta name="description" content="Tutorial & tools bot cPanel MHESZ KASEP">
+<title>📖 Tutorial — MHESZ KASEP</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <!-- AOS -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+:root {
+  --pink: #ff3366;
+  --purple: #8833ff;
+  --blue: #33bbff;
+  --green: #33ff88;
+  --yellow: #ffcc33;
+  --bg-dark: #0f0f14;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #fff;
+  --text-dim: #a1a1aa;
+}
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+  background: linear-gradient(135deg, #0f0f14 0%, #1a0f1f 50%, #2d1b2e 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+  padding: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
 
-    :root {
-      --pink: #ff3366;
-      --purple: #8833ff;
-      --blue: #33bbff;
-      --green: #33ff88;
-      --bg-dark: #0f0f14;
-      --bg-card: rgba(255, 255, 255, 0.04);
-      --border: rgba(255, 255, 255, 0.08);
-      --text: #fff;
-      --text-dim: #a1a1aa;
-      --text-muted: #71717a;
-    }
+/* ═══ ORBS BG ═══ */
+.orb { position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.35; pointer-events: none; z-index: 0; }
+.orb-1 { width: 350px; height: 350px; background: var(--pink); top: -80px; left: -100px; animation: floatOrb 12s ease-in-out infinite; }
+.orb-2 { width: 320px; height: 320px; background: var(--purple); top: 45%; right: -120px; animation: floatOrb 15s ease-in-out infinite reverse; }
+.orb-3 { width: 280px; height: 280px; background: var(--blue); bottom: -100px; left: 30%; animation: floatOrb 18s ease-in-out infinite; }
+@keyframes floatOrb { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,-50px) scale(1.15); } }
 
-    html { scroll-behavior: smooth; }
+.container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
 
-    body {
-      font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
-      background: linear-gradient(135deg, #0f0f14 0%, #1a0f1f 50%, #2d1b2e 100%);
-      background-attachment: fixed;
-      color: var(--text);
-      min-height: 100vh;
-      padding: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-      position: relative;
-    }
+/* ═══ PAGE SYSTEM ═══ */
+.page { display: none; animation: pageIn 0.4s ease; }
+.page.active { display: block; }
+@keyframes pageIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ═══ BACKGROUND ORBS ═══ */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .orb-1 {
-      width: 350px; height: 350px;
-      background: var(--pink);
-      top: -80px; left: -100px;
-      animation: floatOrb 12s ease-in-out infinite;
-    }
-    .orb-2 {
-      width: 320px; height: 320px;
-      background: var(--purple);
-      top: 45%; right: -120px;
-      animation: floatOrb 15s ease-in-out infinite reverse;
-    }
-    .orb-3 {
-      width: 280px; height: 280px;
-      background: var(--blue);
-      bottom: -100px; left: 30%;
-      animation: floatOrb 18s ease-in-out infinite;
-    }
+/* ═══ HEADER ═══ */
+.header { text-align: center; padding: 30px 16px 20px; }
+.header .badge-top {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 16px; border-radius: 999px;
+  background: rgba(255, 51, 102, 0.12); border: 1px solid rgba(255, 51, 102, 0.3);
+  color: var(--pink); font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  margin-bottom: 18px; backdrop-filter: blur(10px);
+}
+.header h1 {
+  font-size: clamp(24px, 6vw, 40px); font-weight: 800;
+  background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue), var(--pink));
+  background-size: 300% 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  letter-spacing: -0.5px; line-height: 1.2;
+  animation: gradientShift 6s ease infinite;
+  filter: drop-shadow(0 0 30px rgba(255, 51, 102, 0.35));
+  margin-bottom: 10px;
+}
+.header p { color: var(--text-dim); font-size: 13.5px; }
+@keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
-    @keyframes floatOrb {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(40px, -50px) scale(1.15); }
-    }
+/* ═══ VIDEO HOME (16:9 auto-play loop) ═══ */
+.video-outer { position: relative; margin-bottom: 26px; }
+.video-glow {
+  position: absolute; inset: -3px; border-radius: 18px;
+  background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+  filter: blur(18px); opacity: 0.6; z-index: 0;
+  animation: glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse { 0%,100% { opacity: 0.5; } 50% { opacity: 0.85; } }
+.video-wrapper {
+  position: relative; padding-bottom: 56.25%; height: 0;
+  overflow: hidden; border-radius: 16px; background: #000;
+  z-index: 1; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.video-wrapper video {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border-radius: 16px; object-fit: cover;
+}
 
-    .container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+/* ═══ SECTION CARD ═══ */
+.section {
+  background: var(--bg-card); border-radius: 16px; padding: 22px;
+  margin-bottom: 16px; border-left: 4px solid var(--pink);
+  border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative; overflow: hidden;
+}
+.section:hover { transform: translateY(-3px); border-color: rgba(255,51,102,0.35); box-shadow: 0 12px 40px rgba(255,51,102,0.15); }
+.section.blue { border-left-color: var(--blue); }
+.section.purple { border-left-color: var(--purple); }
+.section.green { border-left-color: var(--green); }
+.section.blue:hover { box-shadow: 0 12px 40px rgba(51,187,255,0.15); border-color: rgba(51,187,255,0.35); }
+.section.purple:hover { box-shadow: 0 12px 40px rgba(136,51,255,0.15); border-color: rgba(136,51,255,0.35); }
+.section.green:hover { box-shadow: 0 12px 40px rgba(51,255,136,0.15); border-color: rgba(51,255,136,0.35); }
 
-    /* ═══ HEADER ═══ */
-    .header {
-      text-align: center;
-      padding: 40px 16px 24px;
-    }
-    .header .badge-top {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 16px;
-      border-radius: 999px;
-      background: rgba(255, 51, 102, 0.12);
-      border: 1px solid rgba(255, 51, 102, 0.3);
-      color: var(--pink);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-bottom: 20px;
-      backdrop-filter: blur(10px);
-    }
-    .header h1 {
-      font-size: clamp(24px, 6vw, 40px);
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue), var(--pink));
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-      animation: gradientShift 6s ease infinite;
-      filter: drop-shadow(0 0 30px rgba(255, 51, 102, 0.35));
-      margin-bottom: 10px;
-    }
-    .header p {
-      color: var(--text-dim);
-      font-size: 13.5px;
-    }
+.section h2 {
+  font-size: 18px; margin-bottom: 14px; color: var(--pink);
+  display: flex; align-items: center; gap: 10px; font-weight: 700;
+}
+.section h2 i { font-size: 20px; filter: drop-shadow(0 0 12px rgba(255,51,102,0.6)); }
+.section.blue h2 { color: var(--blue); }
+.section.purple h2 { color: var(--purple); }
+.section.green h2 { color: var(--green); }
+.section.blue h2 i { filter: drop-shadow(0 0 12px rgba(51,187,255,0.6)); }
+.section.purple h2 i { filter: drop-shadow(0 0 12px rgba(136,51,255,0.6)); }
+.section.green h2 i { filter: drop-shadow(0 0 12px rgba(51,255,136,0.6)); }
 
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
+.section ol, .section ul { padding-left: 22px; color: #ddd; font-size: 14px; }
+.section ol li, .section ul li { margin-bottom: 10px; }
+.section b { color: #fff; }
+.section code {
+  background: rgba(0,0,0,0.4); padding: 2px 8px; border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace; color: var(--pink); font-size: 12.5px;
+}
 
-    /* ═══ VIDEO ═══ */
-    .video-outer {
-      position: relative;
-      margin-bottom: 26px;
-    }
-    .video-glow {
-      position: absolute;
-      inset: -3px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      filter: blur(18px);
-      opacity: 0.55;
-      z-index: 0;
-      animation: glowPulse 4s ease-in-out infinite;
-    }
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0.45; }
-      50% { opacity: 0.75; }
-    }
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 16px;
-      background: #000;
-      z-index: 1;
-      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
-    }
-    .video-wrapper video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border-radius: 16px;
-      object-fit: contain;
-    }
+/* ═══ FITUR GRID ═══ */
+.fitur-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+.fitur-item {
+  background: rgba(255,255,255,0.05); padding: 18px 8px; border-radius: 12px;
+  text-align: center; font-size: 11.5px; color: #ddd; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 100px;
+  text-decoration: none;
+}
+.fitur-item i {
+  font-size: 24px; margin-bottom: 8px; color: var(--pink);
+  transition: transform 0.35s, color 0.3s;
+  filter: drop-shadow(0 0 8px rgba(255,51,102,0.5));
+}
+.fitur-item span { font-weight: 600; color: #fff; line-height: 1.3; }
+.fitur-item:hover {
+  background: rgba(255,51,102,0.1); border-color: var(--pink);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(255,51,102,0.25);
+}
+.fitur-item:hover i { transform: scale(1.2) rotate(-8deg); color: #fff; }
 
-    /* ═══ SECTION CARD ═══ */
-    .section {
-      background: var(--bg-card);
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 16px;
-      border-left: 4px solid var(--pink);
-      border-top: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .section::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle at top left, rgba(255, 51, 102, 0.08), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-    .section:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255, 51, 102, 0.35);
-      box-shadow: 0 12px 40px rgba(255, 51, 102, 0.15);
-    }
-    .section:hover::before { opacity: 1; }
+/* Video Tutorial item — beda warna biar standout */
+.fitur-item.video-tutorial {
+  background: linear-gradient(135deg, rgba(255,51,102,0.12), rgba(136,51,255,0.12));
+  border-color: rgba(255,51,102,0.35);
+  position: relative;
+}
+.fitur-item.video-tutorial::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,51,102,0.1) 100%);
+  animation: shine 3s ease-in-out infinite;
+}
+@keyframes shine {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+.fitur-item.video-tutorial i { color: var(--yellow); filter: drop-shadow(0 0 12px rgba(255,204,51,0.6)); }
+.fitur-item.video-tutorial:hover { border-color: var(--yellow); box-shadow: 0 10px 30px rgba(255,204,51,0.35); }
 
-    .section.blue   { border-left-color: var(--blue); }
-    .section.purple { border-left-color: var(--purple); }
-    .section.green  { border-left-color: var(--green); }
-    .section.blue:hover   { box-shadow: 0 12px 40px rgba(51, 187, 255, 0.15); border-color: rgba(51, 187, 255, 0.35); }
-    .section.purple:hover { box-shadow: 0 12px 40px rgba(136, 51, 255, 0.15); border-color: rgba(136, 51, 255, 0.35); }
-    .section.green:hover  { box-shadow: 0 12px 40px rgba(51, 255, 136, 0.15); border-color: rgba(51, 255, 136, 0.35); }
+/* ═══ DEV BOX ═══ */
+.dev-box {
+  background: linear-gradient(135deg, rgba(255,51,102,0.1), rgba(136,51,255,0.1));
+  border-radius: 16px; padding: 30px 20px; margin-bottom: 16px;
+  border: 1px solid rgba(255,51,102,0.3); text-align: center;
+  position: relative; overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.dev-box::before {
+  content: ''; position: absolute; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255,51,102,0.15), transparent 30%);
+  animation: rotateConic 8s linear infinite; pointer-events: none;
+}
+@keyframes rotateConic { to { transform: rotate(360deg); } }
+.dev-box > * { position: relative; z-index: 1; }
+.dev-box .emoji { font-size: 52px; margin-bottom: 8px; display: block; animation: bounce 3s ease-in-out infinite; }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.dev-box .name {
+  font-size: 22px; font-weight: 800;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 4px;
+}
+.dev-box .role { color: #aaa; font-size: 13px; margin-bottom: 16px; }
+.dev-box p { color: #ccc; font-size: 13.5px; margin-bottom: 20px; line-height: 1.75; }
+.dev-box .contact {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 24px; background: rgba(255,51,102,0.15);
+  border: 1px solid var(--pink); border-radius: 25px;
+  color: var(--pink); text-decoration: none; font-weight: 700; font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.dev-box .contact:hover { background: var(--pink); color: #fff; transform: translateY(-2px) scale(1.05); box-shadow: 0 10px 25px rgba(255,51,102,0.5); }
 
-    .section h2 {
-      font-size: 18px;
-      margin-bottom: 14px;
-      color: var(--pink);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-    }
-    .section h2 i {
-      font-size: 20px;
-      filter: drop-shadow(0 0 12px rgba(255, 51, 102, 0.6));
-    }
-    .section.blue h2   { color: var(--blue); }
-    .section.purple h2 { color: var(--purple); }
-    .section.green h2  { color: var(--green); }
-    .section.blue h2 i   { filter: drop-shadow(0 0 12px rgba(51, 187, 255, 0.6)); }
-    .section.purple h2 i { filter: drop-shadow(0 0 12px rgba(136, 51, 255, 0.6)); }
-    .section.green h2 i  { filter: drop-shadow(0 0 12px rgba(51, 255, 136, 0.6)); }
+/* ═══ CTA ═══ */
+.cta {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; text-align: center; padding: 17px;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  color: #fff; text-decoration: none; border-radius: 14px;
+  font-weight: 700; font-size: 16px; margin-top: 16px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+  box-shadow: 0 8px 25px rgba(255,51,102,0.3);
+  position: relative; overflow: hidden;
+}
+.cta::before {
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.6s;
+}
+.cta:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 40px rgba(255,51,102,0.55); }
+.cta:hover::before { left: 100%; }
 
-    .section ol, .section ul {
-      padding-left: 22px;
-      color: #ddd;
-      font-size: 14px;
-    }
-    .section ol li, .section ul li { margin-bottom: 10px; position: relative; }
-    .section b { color: #fff; }
-    .section code {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      color: var(--pink);
-      font-size: 12.5px;
-    }
+/* ═══ FOOTER ═══ */
+.footer { text-align: center; padding: 30px 16px; color: #666; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 24px; }
+.footer .brand {
+  font-size: 14px; background: linear-gradient(90deg, var(--pink), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-weight: 700; margin-bottom: 8px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
 
-    /* ═══ FITUR GRID ═══ */
-    .fitur-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .fitur-item {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 16px 10px;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 12px;
-      color: #ddd;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-    .fitur-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(255, 51, 102, 0.15), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .fitur-item i {
-      font-size: 22px;
-      display: block;
-      margin-bottom: 8px;
-      color: var(--pink);
-      transition: transform 0.35s ease, color 0.3s ease;
-      filter: drop-shadow(0 0 8px rgba(255, 51, 102, 0.5));
-    }
-    .fitur-item:hover {
-      background: rgba(255, 51, 102, 0.1);
-      border-color: var(--pink);
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 10px 24px rgba(255, 51, 102, 0.25);
-    }
-    .fitur-item:hover::after { opacity: 1; }
-    .fitur-item:hover i {
-      transform: scale(1.2) rotate(-8deg);
-      color: #fff;
-    }
+/* ═══ BACK BTN ═══ */
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 10px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  color: var(--text-dim); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.25s; text-decoration: none;
+  margin-bottom: 16px;
+}
+.back-btn:hover { background: rgba(255,51,102,0.15); border-color: var(--pink); color: var(--pink); transform: translateX(-3px); }
 
-    /* ═══ DEV BOX ═══ */
-    .dev-box {
-      background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(136, 51, 255, 0.1));
-      border-radius: 16px;
-      padding: 30px 20px;
-      margin-bottom: 16px;
-      border: 1px solid rgba(255, 51, 102, 0.3);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .dev-box:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 50px rgba(255, 51, 102, 0.25);
-    }
-    .dev-box::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(255, 51, 102, 0.15), transparent 30%);
-      animation: rotateConic 8s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes rotateConic {
-      to { transform: rotate(360deg); }
-    }
-    .dev-box > * { position: relative; z-index: 1; }
+/* ═══ STEP PAGE ═══ */
+.page-header { text-align: center; padding: 24px 16px 20px; }
+.page-header h1 {
+  font-size: clamp(20px, 5vw, 30px); font-weight: 800;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 8px;
+}
+.page-header p { color: var(--text-dim); font-size: 13px; }
 
-    .dev-box .emoji {
-      font-size: 52px;
-      margin-bottom: 8px;
-      display: block;
-      animation: bounce 3s ease-in-out infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .dev-box .name {
-      font-size: 22px;
-      font-weight: 800;
-      background: linear-gradient(90deg, var(--pink), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 4px;
-    }
-    .dev-box .role {
-      color: #aaa;
-      font-size: 13px;
-      margin-bottom: 16px;
-    }
-    .dev-box p {
-      color: #ccc;
-      font-size: 13.5px;
-      margin-bottom: 20px;
-      line-height: 1.75;
-    }
-    .dev-box .contact {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 24px;
-      background: rgba(255, 51, 102, 0.15);
-      border: 1px solid var(--pink);
-      border-radius: 25px;
-      color: var(--pink);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .dev-box .contact:hover {
-      background: var(--pink);
-      color: #fff;
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 10px 25px rgba(255, 51, 102, 0.5);
-    }
+/* Progress Bar */
+.progress-wrap { margin: 16px 0 24px; }
+.progress-track { height: 6px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
+.progress-fill {
+  height: 100%; background: linear-gradient(90deg, var(--pink), var(--purple));
+  border-radius: 999px; width: 0%; transition: width 0.4s ease;
+  box-shadow: 0 0 12px rgba(255,51,102,0.6);
+}
+.progress-label {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: var(--text-dim); margin-top: 8px; font-weight: 600;
+}
 
-    /* ═══ CTA ═══ */
-    .cta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      text-align: center;
-      padding: 17px;
-      background: linear-gradient(90deg, var(--pink), var(--purple));
-      color: #fff;
-      text-decoration: none;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 16px;
-      margin-top: 16px;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
-      box-shadow: 0 8px 25px rgba(255, 51, 102, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-    .cta::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-      transition: left 0.6s;
-    }
-    .cta:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 40px rgba(255, 51, 102, 0.55);
-    }
-    .cta:hover::before { left: 100%; }
+/* Step Content */
+.step { display: none; animation: stepIn 0.35s ease; }
+.step.active { display: block; }
+@keyframes stepIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
 
-    /* ═══ FOOTER ═══ */
-    .footer {
-      text-align: center;
-      padding: 30px 16px;
-      color: #666;
-      font-size: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      margin-top: 24px;
-    }
-    .footer .brand {
-      font-size: 14px;
-      background: linear-gradient(90deg, var(--pink), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-      margin-bottom: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
+.step-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #fff; display: flex; align-items: center; gap: 10px; }
+.step-title i { color: var(--pink); font-size: 18px; }
+.step-desc { font-size: 13px; color: var(--text-dim); margin-bottom: 18px; }
 
-    /* ═══ BACK TO TOP ═══ */
-    .back-top {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 51, 102, 0.5);
-      background: linear-gradient(135deg, var(--pink), var(--purple));
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 8px 24px rgba(255, 51, 102, 0.45);
-      z-index: 999;
-    }
-    .back-top.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .back-top:hover {
-      transform: translateY(-4px) scale(1.08);
-      box-shadow: 0 12px 32px rgba(255, 51, 102, 0.7);
-    }
+/* Option Grid */
+.opt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.opt-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
-    /* ═══ RESPONSIVE ═══ */
-    @media (max-width: 600px) {
-      .header { padding: 30px 16px 20px; }
-      .section { padding: 18px; }
-      .section h2 { font-size: 16px; }
-      .section h2 i { font-size: 18px; }
-      .dev-box .emoji { font-size: 44px; }
-      .dev-box .name { font-size: 19px; }
-      .fitur-item { padding: 12px 8px; }
-      .fitur-item i { font-size: 20px; }
-      .back-top { bottom: 16px; right: 16px; width: 42px; height: 42px; }
-    }
-  </style>
+.opt-card {
+  padding: 16px 12px; border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  cursor: pointer; transition: all 0.25s;
+  text-align: center; position: relative;
+}
+.opt-card:hover { background: rgba(255,51,102,0.08); border-color: rgba(255,51,102,0.5); transform: translateY(-2px); }
+.opt-card.selected {
+  background: linear-gradient(135deg, rgba(255,51,102,0.2), rgba(136,51,255,0.2));
+  border-color: var(--pink);
+  box-shadow: 0 8px 24px rgba(255,51,102,0.35);
+}
+.opt-card.selected::after {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free'; font-weight: 900;
+  position: absolute; top: 8px; right: 10px;
+  font-size: 12px; color: var(--pink);
+}
+.opt-card .ico { font-size: 22px; color: var(--pink); display: block; margin-bottom: 6px; }
+.opt-card .label { font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 2px; }
+.opt-card .sub { font-size: 10.5px; color: var(--text-dim); line-height: 1.3; }
+.opt-card.role-reseller .ico { color: var(--blue); }
+.opt-card.role-owner .ico { color: var(--yellow); }
+.opt-card.role-partner .ico { color: var(--green); }
+.opt-card.role-dev .ico { color: var(--purple); }
+
+/* Input Field */
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 12.5px; font-weight: 600; color: var(--text-dim); margin-bottom: 8px; letter-spacing: 0.3px; }
+.field input, .field select {
+  width: 100%; padding: 13px 16px;
+  background: rgba(0,0,0,0.35);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 12px; color: #fff; font-size: 14px;
+  font-family: inherit; transition: all 0.25s; outline: none;
+}
+.field input:focus, .field select:focus {
+  border-color: var(--pink);
+  background: rgba(0,0,0,0.5);
+  box-shadow: 0 0 0 3px rgba(255,51,102,0.15);
+}
+.field input::placeholder { color: #555; }
+
+/* Navigation Buttons */
+.nav-btns { display: flex; gap: 10px; margin-top: 22px; }
+.btn-nav {
+  flex: 1; padding: 14px; border-radius: 12px;
+  border: none; cursor: pointer; font-size: 14px; font-weight: 700;
+  font-family: inherit; transition: all 0.25s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-secondary { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+.btn-secondary:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.btn-primary {
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  color: #fff; box-shadow: 0 8px 24px rgba(255,51,102,0.35);
+}
+.btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,51,102,0.55); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Review Box */
+.review-box { padding: 18px; border-radius: 14px; background: rgba(0,0,0,0.35); border: 1px solid var(--border); margin-bottom: 18px; }
+.review-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,0.06); font-size: 13px; }
+.review-row:last-child { border-bottom: none; }
+.review-row .k { color: var(--text-dim); display: flex; align-items: center; gap: 8px; }
+.review-row .v { color: #fff; font-weight: 700; text-align: right; }
+.review-row i { color: var(--pink); font-size: 13px; width: 16px; }
+
+/* ═══ TUTORIAL VIDEO PAGE ═══ */
+.video-featured {
+  position: relative;
+  padding-bottom: 56.25%; height: 0;
+  overflow: hidden; border-radius: 16px;
+  background: #000; margin-bottom: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.video-featured video {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; border-radius: 16px;
+  object-fit: contain;
+}
+
+.video-list { display: flex; flex-direction: column; gap: 12px; }
+
+.video-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+}
+.video-item:hover {
+  background: rgba(255,51,102,0.08);
+  border-color: rgba(255,51,102,0.5);
+  transform: translateX(4px);
+  box-shadow: 0 8px 24px rgba(255,51,102,0.2);
+}
+.video-thumb {
+  width: 70px; height: 70px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; color: #fff;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.video-thumb::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.3) 100%);
+}
+.video-info { flex: 1; min-width: 0; }
+.video-info .title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.3; }
+.video-info .desc { font-size: 11.5px; color: var(--text-dim); line-height: 1.4; }
+.video-info .meta { font-size: 10.5px; color: var(--pink); margin-top: 4px; font-weight: 600; }
+
+/* Toast */
+.toast {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
+  padding: 12px 22px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: #fff; font-weight: 600; font-size: 13px;
+  box-shadow: 0 10px 40px rgba(255,51,102,0.5);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 9999; opacity: 0;
+  display: flex; align-items: center; gap: 10px;
+  max-width: 90vw;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px); z-index: 9998;
+  display: none; align-items: center; justify-content: center;
+  padding: 20px; opacity: 0; transition: opacity 0.25s;
+}
+.modal-overlay.show { display: flex; opacity: 1; }
+.modal-card {
+  background: linear-gradient(145deg, #1a0f1f, #2d1b2e);
+  border: 1px solid rgba(255,51,102,0.3);
+  border-radius: 20px; padding: 26px 22px;
+  max-width: 420px; width: 100%; position: relative;
+  animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-height: 85vh; overflow-y: auto;
+}
+@keyframes modalIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+.modal-card .modal-ico {
+  width: 60px; height: 60px; border-radius: 16px;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; color: #fff; margin: 0 auto 16px;
+  box-shadow: 0 10px 30px rgba(255,51,102,0.5);
+}
+.modal-card h3 { font-size: 18px; font-weight: 800; text-align: center; margin-bottom: 12px; color: #fff; }
+.modal-card p { font-size: 13.5px; color: var(--text-dim); text-align: center; line-height: 1.7; margin-bottom: 18px; }
+.modal-card ul { color: var(--text-dim); font-size: 13px; padding-left: 20px; margin-bottom: 18px; }
+.modal-card ul li { margin-bottom: 6px; }
+.modal-card ul li b { color: var(--pink); }
+.modal-btn {
+  width: 100%; padding: 13px; border-radius: 12px;
+  border: none; cursor: pointer; font-family: inherit;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  color: #fff; font-weight: 700; font-size: 14px;
+  transition: transform 0.25s;
+}
+.modal-btn:hover { transform: translateY(-2px); }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .header { padding: 24px 16px 16px; }
+  .section { padding: 18px; }
+  .section h2 { font-size: 16px; }
+  .fitur-item { padding: 14px 6px; min-height: 88px; font-size: 10.5px; }
+  .fitur-item i { font-size: 20px; margin-bottom: 6px; }
+  .dev-box .emoji { font-size: 44px; }
+  .dev-box .name { font-size: 19px; }
+  .opt-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .opt-card { padding: 12px 8px; }
+  .opt-card .ico { font-size: 18px; }
+  .opt-card .label { font-size: 12px; }
+  .video-thumb { width: 60px; height: 60px; font-size: 24px; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Background Orbs -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 
-  <div class="container">
+<div class="container">
 
-    <!-- ═══ HEADER ═══ -->
-    <div class="header" data-aos="fade-down">
-      <div class="badge-top">
-        <i class="fa-solid fa-book-open"></i> PANDUAN RESMI
-      </div>
-      <h1>📖 TUTORIAL MHESZ KASEP</h1>
-      <p>Panduan lengkap cara pake bot cPanel</p>
-    </div>
+<!-- ═══════════════════════════════════ -->
+<!-- PAGE: HOME -->
+<!-- ═══════════════════════════════════ -->
+<div id="page-home" class="page active">
 
-    <!-- ═══ VIDEO ═══ -->
-    <div class="video-outer" data-aos="zoom-in">
-      <div class="video-glow"></div>
-      <div class="video-wrapper">
-        <video controls preload="metadata" playsinline>
-          <source src="https://cdn.jsdelivr.net/gh/anjaymabarr401-svg/tutorial-mahesz@main/Screen_Recording_20261009_202012.mp4" type="video/mp4">
-          Browser lu gak support video tag.
-        </video>
-      </div>
-    </div>
-
-    <!-- ═══ STEP BY STEP ═══ -->
-    <div class="section" data-aos="fade-up">
-      <h2><i class="fa-solid fa-list-check"></i> CARA PAKE BOT</h2>
-      <ol>
-        <li>Klik <b>ADD AKSES</b> di menu utama bot (GRATIS)</li>
-        <li>Pilih <b>masa aktif reseller</b> (1 minggu / 1 bulan / permanen)</li>
-        <li>Klik <b>CREATE PANEL</b> buat mulai bikin panel</li>
-        <li>Pilih <b>paket</b> (1 GB, 2 GB, dst) lalu kirim nama panel</li>
-        <li>Pilih <b>server & egg</b> yang lu mau</li>
-        <li>Panel jadi! <b>Data login dikirim ke DM</b> lu</li>
-      </ol>
-    </div>
-
-    <!-- ═══ FITUR UTAMA ═══ -->
-    <div class="section blue" data-aos="fade-up" data-aos-delay="50">
-      <h2><i class="fa-solid fa-gift"></i> FITUR UTAMA</h2>
-      <div class="fitur-grid">
-        <div class="fitur-item"><i class="fa-solid fa-desktop"></i>Panel cPanel</div>
-        <div class="fitur-item"><i class="fa-solid fa-rocket"></i>Create Instan</div>
-        <div class="fitur-item"><i class="fa-solid fa-cart-shopping"></i>Buy Script</div>
-        <div class="fitur-item"><i class="fa-solid fa-palette"></i>Jasa Pasang</div>
-        <div class="fitur-item"><i class="fa-solid fa-ticket"></i>Voucher Diskon</div>
-        <div class="fitur-item"><i class="fa-solid fa-bolt"></i>Fast Response</div>
-        <div class="fitur-item"><i class="fa-solid fa-shield-halved"></i>Anti-Miner</div>
-        <div class="fitur-item"><i class="fa-solid fa-chart-column"></i>Auto Restart</div>
-      </div>
-    </div>
-
-    <!-- ═══ BUTUH BANTUAN ═══ -->
-    <div class="section purple" data-aos="fade-up" data-aos-delay="100">
-      <h2><i class="fa-solid fa-lightbulb"></i> BUTUH BANTUAN?</h2>
-      <ol>
-        <li>Buka <b>MENU UTAMA</b> di bot</li>
-        <li>Klik <b>CHAT DEV</b></li>
-        <li>Ketik pertanyaan lu</li>
-        <li>Tunggu balasan max <b>1x24 jam</b></li>
-      </ol>
-      <p style="margin-top: 12px; font-size: 13px; color: #aaa;">
-        💡 <b>Tips:</b> Screenshot masalahnya biar Dev lebih gampang bantu.
-      </p>
-    </div>
-
-    <!-- ═══ FAQ ═══ -->
-    <div class="section green" data-aos="fade-up" data-aos-delay="150">
-      <h2><i class="fa-solid fa-circle-question"></i> FAQ</h2>
-      <ul style="list-style: none; padding-left: 0;">
-        <li style="margin-bottom: 14px;">
-          <b>Q: Beneran gratis?</b><br>
-          <span style="color: #ccc; font-size: 13px;">A: Iya, 100% gratis. Gak ada biaya tersembunyi.</span>
-        </li>
-        <li style="margin-bottom: 14px;">
-          <b>Q: Max bikin panel berapa?</b><br>
-          <span style="color: #ccc; font-size: 13px;">A: Max 3 panel/hari per user.</span>
-        </li>
-        <li style="margin-bottom: 14px;">
-          <b>Q: Panel ilang kalo bot mati?</b><br>
-          <span style="color: #ccc; font-size: 13px;">A: Gak, data lu aman. Ada backup otomatis.</span>
-        </li>
-        <li>
-          <b>Q: Kalo panel error gimana?</b><br>
-          <span style="color: #ccc; font-size: 13px;">A: Chat Dev aja, atau klaim garansi kode.</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- ═══ ABOUT DEV ═══ -->
-    <div class="dev-box" data-aos="zoom-in" data-aos-delay="200">
-      <span class="emoji">👨‍💻</span>
-      <div class="name">@maklov1</div>
-      <div class="role">Owner & Developer — MHESZ KASEP</div>
-      <p>
-        Halo! Gua Maklov, developer bot ini.<br>
-        Bikin MHESZ KASEP karena pengen bantu<br>
-        temen-temen yang butuh panel gratis & cepat.<br><br>
-        <b>Fast • Secure • Premium</b> ⚡
-      </p>
-      <a href="https://t.me/maklov1" class="contact" target="_blank">
-        <i class="fa-brands fa-telegram"></i> Chat Dev
-      </a>
-    </div>
-
-    <!-- ═══ CTA ═══ -->
-    <a href="https://t.me/CpanelhzzBot" class="cta" target="_blank" data-aos="fade-up" data-aos-delay="250">
-      <i class="fa-brands fa-telegram"></i> BUKA BOT TELEGRAM
-    </a>
-
-    <!-- ═══ FOOTER ═══ -->
-    <div class="footer">
-      <div class="brand">
-        <i class="fa-solid fa-bolt"></i> #cpanel by cel kasep
-      </div>
-      <div>© <span id="year"></span> MHESZ KASEP • All Rights Reserved</div>
-    </div>
-
+  <div class="header" data-aos="fade-down">
+    <div class="badge-top"><i class="fa-solid fa-book-open"></i> PANDUAN RESMI</div>
+    <h1>📖 TUTORIAL MHESZ KASEP</h1>
+    <p>Panduan lengkap cara pake bot cPanel</p>
   </div>
 
-  <!-- Back to Top -->
-  <button id="backTop" class="back-top" aria-label="Back to top">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
+  <!-- ═══════════════════════════════════════════
+       VIDEO KEREN HOME (16:9) — GANTI src DI BAWAH
+       ═══════════════════════════════════════════ -->
+  <div class="video-outer" data-aos="zoom-in">
+  <div class="video-glow"></div>
+  <div class="video-wrapper">
+    <video autoplay muted loop playsinline>
+      <source src="https://files.catbox.moe/zmt9ji.mp4" type="video/mp4">
+      Browser lu gak support video tag.
+    </video>
+  </div>
+</div>
+  <!-- ═══════════════════════════════════════════ -->
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 700,
-      easing: 'ease-out-cubic',
-      once: true,
-      offset: 60,
-    });
+  <div class="section" data-aos="fade-up">
+    <h2><i class="fa-solid fa-list-check"></i> CARA PAKE BOT</h2>
+    <ol>
+      <li>Klik <b>ADD AKSES</b> di menu utama bot (GRATIS)</li>
+      <li>Pilih <b>masa aktif reseller</b> (1 minggu / 1 bulan / permanen)</li>
+      <li>Klik <b>CREATE PANEL</b> buat mulai bikin panel</li>
+      <li>Pilih <b>paket</b> (1 GB, 2 GB, dst) lalu kirim nama panel</li>
+      <li>Pilih <b>server & egg</b> yang lu mau</li>
+      <li>Panel jadi! <b>Data login dikirim ke DM</b> lu</li>
+    </ol>
+  </div>
 
-    // Year auto
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <div class="section blue" data-aos="fade-up" data-aos-delay="50">
+    <h2><i class="fa-solid fa-gift"></i> FITUR UTAMA</h2>
+    <div class="fitur-grid">
 
-    // Back to top
-    const btn = document.getElementById('backTop');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) btn.classList.add('show');
-      else btn.classList.remove('show');
-    });
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+      <a href="https://t.me/CpanelhzzBot" target="_blank" class="fitur-item">
+        <i class="fa-solid fa-robot"></i>
+        <span>Bot cPanel</span>
+      </a>
+
+      <a href="#" onclick="goCreate();return false;" class="fitur-item">
+        <i class="fa-solid fa-rocket"></i>
+        <span>Create Instan</span>
+      </a>
+
+      <a href="https://t.me/maklov1" target="_blank" class="fitur-item">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>Buy Script</span>
+      </a>
+
+      <a href="https://t.me/maklov1" target="_blank" class="fitur-item">
+        <i class="fa-solid fa-palette"></i>
+        <span>Jasa Pasang</span>
+      </a>
+
+      <a href="#" onclick="goVoucher();return false;" class="fitur-item">
+        <i class="fa-solid fa-ticket"></i>
+        <span>Voucher Diskon</span>
+      </a>
+
+      <a href="#" onclick="goTutorial();return false;" class="fitur-item video-tutorial">
+        <i class="fa-solid fa-play-circle"></i>
+        <span>Video Tutorial</span>
+      </a>
+
+      <a href="#" onclick="openModal('fast');return false;" class="fitur-item">
+        <i class="fa-solid fa-bolt"></i>
+        <span>Fast Response</span>
+      </a>
+
+      <a href="#" onclick="openModal('miner');return false;" class="fitur-item">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Anti-Miner</span>
+      </a>
+
+      <a href="#" onclick="openModal('restart');return false;" class="fitur-item">
+        <i class="fa-solid fa-chart-column"></i>
+        <span>Auto Restart</span>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="section purple" data-aos="fade-up" data-aos-delay="100">
+    <h2><i class="fa-solid fa-lightbulb"></i> BUTUH BANTUAN?</h2>
+    <ol>
+      <li>Buka <b>MENU UTAMA</b> di bot</li>
+      <li>Klik <b>CHAT DEV</b></li>
+      <li>Ketik pertanyaan lu</li>
+      <li>Tunggu balasan max <b>1x24 jam</b></li>
+    </ol>
+    <p style="margin-top: 12px; font-size: 13px; color: #aaa;">
+      💡 <b>Tips:</b> Screenshot masalahnya biar Dev lebih gampang bantu.
+    </p>
+  </div>
+
+  <div class="section green" data-aos="fade-up" data-aos-delay="150">
+    <h2><i class="fa-solid fa-circle-question"></i> FAQ</h2>
+    <ul style="list-style: none; padding-left: 0;">
+      <li style="margin-bottom: 14px;"><b>Q: Beneran gratis?</b><br><span style="color:#ccc;font-size:13px;">A: Iya, 100% gratis. Gak ada biaya tersembunyi.</span></li>
+      <li style="margin-bottom: 14px;"><b>Q: Max bikin panel berapa?</b><br><span style="color:#ccc;font-size:13px;">A: Max 3 panel/hari per user.</span></li>
+      <li style="margin-bottom: 14px;"><b>Q: Panel ilang kalo bot mati?</b><br><span style="color:#ccc;font-size:13px;">A: Gak, data lu aman. Ada backup otomatis.</span></li>
+      <li><b>Q: Kalo panel error gimana?</b><br><span style="color:#ccc;font-size:13px;">A: Chat Dev aja, atau klaim garansi kode.</span></li>
+    </ul>
+  </div>
+
+  <div class="dev-box" data-aos="zoom-in" data-aos-delay="200">
+    <span class="emoji">👨‍💻</span>
+    <div class="name">@maklov1</div>
+    <div class="role">Owner & Developer — MHESZ KASEP</div>
+    <p>
+      Halo! Gua Maklov, developer bot ini.<br>
+      Bikin MHESZ KASEP karena pengen bantu<br>
+      temen-temen yang butuh panel gratis & cepat.<br><br>
+      <b>Fast • Secure • Premium</b> ⚡
+    </p>
+    <a href="https://t.me/maklov1" class="contact" target="_blank">
+      <i class="fa-brands fa-telegram"></i> Chat Dev
+    </a>
+  </div>
+
+  <a href="https://t.me/CpanelhzzBot" class="cta" target="_blank" data-aos="fade-up" data-aos-delay="250">
+    <i class="fa-brands fa-telegram"></i> BUKA BOT TELEGRAM
+  </a>
+
+  <div class="footer">
+    <div class="brand"><i class="fa-solid fa-bolt"></i> #cpanel by cel kasep</div>
+    <div>© <span id="year"></span> MHESZ KASEP • All Rights Reserved</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- PAGE: TUTORIAL VIDEO -->
+<!-- ═══════════════════════════════════ -->
+<div id="page-tutorial" class="page">
+
+  <a href="#" onclick="goHome();return false;" class="back-btn">
+    <i class="fa-solid fa-arrow-left"></i> Kembali
+  </a>
+
+  <div class="page-header">
+    <h1>🎬 VIDEO TUTORIAL</h1>
+    <p>Nonton step-by-step cara pake bot</p>
+  </div>
+
+  <!-- ═══ VIDEO UTAMA (VIDEO TUTORIAL LAMA) ═══ -->
+  <div class="video-featured" data-aos="zoom-in">
+    <video controls preload="metadata" playsinline id="mainVideo">
+      <source src="https://cdn.jsdelivr.net/gh/anjaymabarr401-svg/tutorial-mahesz@main/Screen_Recording_20261009_202012.mp4" type="video/mp4">
+      Browser lu gak support video tag.
+    </video>
+  </div>
+
+  <div class="section" data-aos="fade-up">
+    <h2><i class="fa-solid fa-film"></i> LIST TUTORIAL</h2>
+    <div class="video-list">
+
+      <a href="#" onclick="playVideo('https://cdn.jsdelivr.net/gh/anjaymabarr401-svg/tutorial-mahesz@main/Screen_Recording_20261009_202012.mp4','Cara Bikin Panel Pertama');return false;" class="video-item">
+        <div class="video-thumb"><i class="fa-solid fa-rocket"></i></div>
+        <div class="video-info">
+          <div class="title">Cara Bikin Panel Pertama</div>
+          <div class="desc">Dari ADD AKSES sampe panel jadi</div>
+          <div class="meta"><i class="fa-solid fa-clock"></i> 0:40 • Pemula</div>
+        </div>
+      </a>
+
+      <a href="#" onclick="playVideo('https://cdn.jsdelivr.net/gh/anjaymabarr401-svg/tutorial-mahesz@main/Screen_Recording_20261009_202012.mp4','Cara Upgrade Role');return false;" class="video-item">
+        <div class="video-thumb" style="background:linear-gradient(135deg,var(--yellow),var(--pink));"><i class="fa-solid fa-crown"></i></div>
+        <div class="video-info">
+          <div class="title">Cara Upgrade Role</div>
+          <div class="desc">Upgrade ke Owner / Partner</div>
+          <div class="meta"><i class="fa-solid fa-clock"></i> Segera hadir</div>
+        </div>
+      </a>
+
+      <a href="#" onclick="playVideo('https://cdn.jsdelivr.net/gh/anjaymabarr401-svg/tutorial-mahesz@main/Screen_Recording_20261009_202012.mp4','Cara Pakai Voucher');return false;" class="video-item">
+        <div class="video-thumb" style="background:linear-gradient(135deg,var(--blue),var(--purple));"><i class="fa-solid fa-ticket"></i></div>
+        <div class="video-info">
+          <div class="title">Cara Pakai Voucher</div>
+          <div class="desc">Klaim voucher dari event / giveaway</div>
+          <div class="meta"><i class="fa-solid fa-clock"></i> Segera hadir</div>
+        </div>
+      </a>
+
+      <a href="#" onclick="playVideo('https://cdn.jsdelivr.net/gh/anjaymabarr401-svg/tutorial-mahesz@main/Screen_Recording_20261009_202012.mp4','Cara Setup Bot Sendiri');return false;" class="video-item">
+        <div class="video-thumb" style="background:linear-gradient(135deg,var(--green),var(--blue));"><i class="fa-solid fa-cog"></i></div>
+        <div class="video-info">
+          <div class="title">Cara Setup Bot Sendiri</div>
+          <div class="desc">Deploy bot cPanel di VPS lu sendiri</div>
+          <div class="meta"><i class="fa-solid fa-clock"></i> Segera hadir</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="brand"><i class="fa-solid fa-bolt"></i> #cpanel by cel kasep</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- PAGE: CREATE INSTAN -->
+<!-- ═══════════════════════════════════ -->
+<div id="page-create" class="page">
+
+  <a href="#" onclick="goHome();return false;" class="back-btn">
+    <i class="fa-solid fa-arrow-left"></i> Kembali
+  </a>
+
+  <div class="page-header">
+    <h1>🚀 CREATE PANEL INSTAN</h1>
+    <p>Setup panel dalam 30 detik, langsung dari web</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label">
+      <span id="progressStep">Step 1 dari 5</span>
+      <span id="progressPercent">0%</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <!-- STEP 1: ROLE -->
+    <div class="step active" data-step="1">
+      <div class="step-title"><i class="fa-solid fa-user-tag"></i> Pilih Role Lu</div>
+      <div class="step-desc">Pilih role yang lu punya. Role nentuin limit panel & fitur.</div>
+      <div class="opt-grid cols-3" id="roleGrid">
+        <div class="opt-card" data-value="user" onclick="selectOpt(this)">
+          <i class="fa-solid fa-user ico"></i>
+          <div class="label">User</div>
+          <div class="sub">Max 1 panel</div>
+        </div>
+        <div class="opt-card role-reseller" data-value="reseller" onclick="selectOpt(this)">
+          <i class="fa-solid fa-store ico"></i>
+          <div class="label">Reseller</div>
+          <div class="sub">Max 3/hari</div>
+        </div>
+        <div class="opt-card role-owner" data-value="owner" onclick="selectOpt(this)">
+          <i class="fa-solid fa-crown ico"></i>
+          <div class="label">Owner</div>
+          <div class="sub">Unlimited</div>
+        </div>
+        <div class="opt-card role-partner" data-value="partner" onclick="selectOpt(this)">
+          <i class="fa-solid fa-gem ico"></i>
+          <div class="label">Partner</div>
+          <div class="sub">Unlimited + VPS</div>
+        </div>
+        <div class="opt-card role-dev" data-value="dev" onclick="selectOpt(this)">
+          <i class="fa-solid fa-bolt ico"></i>
+          <div class="label">Dev</div>
+          <div class="sub">Full Akses</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: RAM -->
+    <div class="step" data-step="2">
+      <div class="step-title"><i class="fa-solid fa-memory"></i> Pilih RAM Panel</div>
+      <div class="step-desc">Makin gede RAM, makin kuat panel lu.</div>
+      <div class="opt-grid cols-3" id="ramGrid">
+        <div class="opt-card" data-value="1024" onclick="selectOpt(this)"><div class="label">1 GB</div><div class="sub">Basic</div></div>
+        <div class="opt-card" data-value="2048" onclick="selectOpt(this)"><div class="label">2 GB</div><div class="sub">Standard</div></div>
+        <div class="opt-card" data-value="3072" onclick="selectOpt(this)"><div class="label">3 GB</div><div class="sub">Comfort</div></div>
+        <div class="opt-card" data-value="4096" onclick="selectOpt(this)"><div class="label">4 GB</div><div class="sub">Advanced</div></div>
+        <div class="opt-card" data-value="5120" onclick="selectOpt(this)"><div class="label">5 GB</div><div class="sub">Pro</div></div>
+        <div class="opt-card" data-value="6144" onclick="selectOpt(this)"><div class="label">6 GB</div><div class="sub">Plus</div></div>
+        <div class="opt-card" data-value="7168" onclick="selectOpt(this)"><div class="label">7 GB</div><div class="sub">Ultra</div></div>
+        <div class="opt-card" data-value="8192" onclick="selectOpt(this)"><div class="label">8 GB</div><div class="sub">Elite</div></div>
+        <div class="opt-card" data-value="9216" onclick="selectOpt(this)"><div class="label">9 GB</div><div class="sub">Titan</div></div>
+        <div class="opt-card" data-value="10240" onclick="selectOpt(this)"><div class="label">10 GB</div><div class="sub">Godly</div></div>
+        <div class="opt-card" data-value="0" onclick="selectOpt(this)" style="grid-column: span 2;background:linear-gradient(135deg,rgba(51,255,136,0.15),rgba(255,51,102,0.15));border-color:rgba(51,255,136,0.4);">
+          <i class="fa-solid fa-infinity ico" style="color:var(--green);"></i>
+          <div class="label">UNLIMITED</div>
+          <div class="sub">Tanpa batas (Owner/Partner/Dev only)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: NAMA -->
+    <div class="step" data-step="3">
+      <div class="step-title"><i class="fa-solid fa-pen"></i> Nama Panel</div>
+      <div class="step-desc">Buat nama unik buat panel lu. Huruf kecil, angka, strip, underscore.</div>
+      <div class="field">
+        <label>Nama Panel</label>
+        <input type="text" id="panelName" placeholder="contoh: panelsaya" maxlength="15" oninput="validateName()">
+        <div style="font-size:11px;color:var(--text-dim);margin-top:6px;">
+          <span id="nameHint">Min 3, max 15 karakter • hanya huruf kecil & angka</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: SERVER -->
+    <div class="step" data-step="4">
+      <div class="step-title"><i class="fa-solid fa-server"></i> Pilih Server</div>
+      <div class="step-desc">Pilih lokasi server buat panel lu.</div>
+      <div class="opt-grid" id="serverGrid">
+        <div class="opt-card" data-value="1" onclick="selectOpt(this)">
+          <i class="fa-solid fa-star ico"></i>
+          <div class="label">SERVER 1</div>
+          <div class="sub">Recommended ⭐</div>
+        </div>
+        <div class="opt-card" data-value="2" onclick="selectOpt(this)">
+          <i class="fa-solid fa-server ico"></i>
+          <div class="label">SERVER 2</div>
+          <div class="sub">Alternative</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: EGG -->
+    <div class="step" data-step="5">
+      <div class="step-title"><i class="fa-solid fa-egg"></i> Pilih Egg</div>
+      <div class="step-desc">Egg = template aplikasi. Buat bot Telegram, pilih Node.js.</div>
+      <div class="opt-grid" id="eggGrid">
+        <div class="opt-card" data-value="node18" onclick="selectOpt(this)">
+          <i class="fa-brands fa-node-js ico"></i>
+          <div class="label">Node.js 18</div>
+          <div class="sub">Buat bot Telegram</div>
+        </div>
+        <div class="opt-card" data-value="node20" onclick="selectOpt(this)">
+          <i class="fa-brands fa-node-js ico"></i>
+          <div class="label">Node.js 20</div>
+          <div class="sub">Latest Node.js</div>
+        </div>
+        <div class="opt-card" data-value="python" onclick="selectOpt(this)">
+          <i class="fa-brands fa-python ico"></i>
+          <div class="label">Python 3.11</div>
+          <div class="sub">Script Python</div>
+        </div>
+        <div class="opt-card" data-value="java" onclick="selectOpt(this)">
+          <i class="fa-brands fa-java ico"></i>
+          <div class="label">Java 17</div>
+          <div class="sub">Server Java</div>
+        </div>
+        <div class="opt-card" data-value="minecraft" onclick="selectOpt(this)">
+          <i class="fa-solid fa-cube ico"></i>
+          <div class="label">Minecraft</div>
+          <div class="sub">Server MC</div>
+        </div>
+        <div class="opt-card" data-value="other" onclick="selectOpt(this)">
+          <i class="fa-solid fa-ellipsis ico"></i>
+          <div class="label">Lainnya</div>
+          <div class="sub">Pilih di bot</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: REVIEW -->
+    <div class="step" data-step="6">
+      <div class="step-title"><i class="fa-solid fa-circle-check"></i> Konfirmasi & Buat</div>
+      <div class="step-desc">Cek data lu, kalo udah bener klik tombol buat bikin panel.</div>
+      <div class="review-box">
+        <div class="review-row"><span class="k"><i class="fa-solid fa-user-tag"></i> Role</span><span class="v" id="rvRole">-</span></div>
+        <div class="review-row"><span class="k"><i class="fa-solid fa-memory"></i> RAM</span><span class="v" id="rvRam">-</span></div>
+        <div class="review-row"><span class="k"><i class="fa-solid fa-pen"></i> Nama</span><span class="v" id="rvName">-</span></div>
+        <div class="review-row"><span class="k"><i class="fa-solid fa-server"></i> Server</span><span class="v" id="rvServer">-</span></div>
+        <div class="review-row"><span class="k"><i class="fa-solid fa-egg"></i> Egg</span><span class="v" id="rvEgg">-</span></div>
+      </div>
+      <div style="background:rgba(255,204,51,0.08);border:1px solid rgba(255,204,51,0.3);border-radius:12px;padding:14px;margin-bottom:18px;font-size:12.5px;color:#ddd;line-height:1.6;">
+        <b style="color:var(--yellow);">⚠️ Info:</b> Setelah klik tombol, lu bakal diarahin ke bot Telegram <b>@CpanelhzzBot</b> buat bikin panel. Data login bakal dikirim ke DM lu.
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn-nav btn-secondary" id="btnPrev" onclick="prevStep()">
+        <i class="fa-solid fa-arrow-left"></i> Kembali
+      </button>
+      <button class="btn-nav btn-primary" id="btnNext" onclick="nextStep()" disabled>
+        Lanjut <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="brand"><i class="fa-solid fa-bolt"></i> #cpanel by cel kasep</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- PAGE: VOUCHER -->
+<!-- ═══════════════════════════════════ -->
+<div id="page-voucher" class="page">
+
+  <a href="#" onclick="goHome();return false;" class="back-btn">
+    <i class="fa-solid fa-arrow-left"></i> Kembali
+  </a>
+
+  <div class="page-header">
+    <h1>🎫 VOUCHER DISKON</h1>
+    <p>Masukin kode voucher buat dapetin bonus</p>
+  </div>
+
+  <div class="section">
+    <div class="step-title"><i class="fa-solid fa-ticket"></i> Masukin Kode Voucher</div>
+    <div class="step-desc">Ketik kode voucher dari Dev / event giveaway.</div>
+
+    <div class="field">
+      <label>Kode Voucher</label>
+      <input type="text" id="voucherCode" placeholder="VCR-XXXXXXXX" oninput="validateVoucher()" style="text-transform:uppercase;font-family:'JetBrains Mono',monospace;letter-spacing:2px;text-align:center;font-size:16px;">
+    </div>
+
+    <div style="background:rgba(51,187,255,0.08);border:1px solid rgba(51,187,255,0.3);border-radius:12px;padding:14px;margin-bottom:18px;font-size:12.5px;color:#ddd;line-height:1.6;">
+      <b style="color:var(--blue);">💡 Cara Dapet Voucher:</b><br>
+      • Follow channel & grup MHESZ KASEP<br>
+      • Ikut event giveaway<br>
+      • Beli dari Dev langsung
+    </div>
+
+    <button class="btn-nav btn-primary" id="btnRedeem" onclick="redeemVoucher()" disabled style="width:100%;">
+      <i class="fa-solid fa-gift"></i> Klaim Voucher
+    </button>
+  </div>
+
+  <div class="footer">
+    <div class="brand"><i class="fa-solid fa-bolt"></i> #cpanel by cel kasep</div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- Toast -->
+<div id="toast" class="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">OK</span></div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal();">
+  <div class="modal-card">
+    <div class="modal-ico" id="modalIco"><i class="fa-solid fa-info"></i></div>
+    <h3 id="modalTitle">Info</h3>
+    <div id="modalBody"></div>
+    <button class="modal-btn" onclick="closeModal()">Oke, Ngerti!</button>
+  </div>
+</div>
+
+<!-- Back to Top -->
+<button id="backTop" class="cta" style="position:fixed;bottom:20px;right:20px;width:48px;height:48px;padding:0;border-radius:14px;display:none;z-index:999;" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// ═══ NAVIGATION ═══
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'page-create') resetCreateForm();
+}
+function goHome()     { showPage('page-home'); }
+function goCreate()   { showPage('page-create'); }
+function goVoucher()  { showPage('page-voucher'); }
+function goTutorial() { showPage('page-tutorial'); }
+
+// ═══ PLAY VIDEO DARI LIST ═══
+function playVideo(url, title) {
+  const video = document.getElementById('mainVideo');
+  const src = video.querySelector('source');
+  src.src = url;
+  video.load();
+  video.play();
+  showToast('▶️ ' + title);
+  setTimeout(() => {
+    document.querySelector('.video-featured').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+}
+
+// ═══ STEP NAVIGATION (CREATE PANEL) ═══
+let currentStep = 1;
+const TOTAL_STEPS = 6;
+const formData = { role: null, ram: null, name: null, server: null, egg: null };
+
+const roleLabels   = { user:'User', reseller:'Reseller', owner:'Owner', partner:'Partner', dev:'Developer' };
+const ramLabels    = { '1024':'1 GB','2048':'2 GB','3072':'3 GB','4096':'4 GB','5120':'5 GB','6144':'6 GB','7168':'7 GB','8192':'8 GB','9216':'9 GB','10240':'10 GB','0':'UNLIMITED' };
+const serverLabels = { '1':'SERVER 1','2':'SERVER 2' };
+const eggLabels    = { node18:'Node.js 18', node20:'Node.js 20', python:'Python 3.11', java:'Java 17', minecraft:'Minecraft', other:'Lainnya' };
+
+function selectOpt(el) {
+  const parent = el.parentElement;
+  parent.querySelectorAll('.opt-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const step = currentStep;
+  const value = el.dataset.value;
+  if (step === 1) formData.role = value;
+  if (step === 2) formData.ram = value;
+  if (step === 4) formData.server = value;
+  if (step === 5) formData.egg = value;
+  updateNextBtn();
+}
+
+function validateName() {
+  const input = document.getElementById('panelName');
+  const val = input.value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+  input.value = val;
+  if (val.length >= 3 && val.length <= 15) {
+    formData.name = val;
+    document.getElementById('nameHint').style.color = 'var(--green)';
+    document.getElementById('nameHint').textContent = '✓ Nama valid: ' + val;
+  } else {
+    formData.name = null;
+    document.getElementById('nameHint').style.color = 'var(--text-dim)';
+    document.getElementById('nameHint').textContent = 'Min 3, max 15 karakter • hanya huruf kecil & angka';
+  }
+  updateNextBtn();
+}
+
+function updateNextBtn() {
+  const btn = document.getElementById('btnNext');
+  let valid = false;
+  if (currentStep === 1) valid = !!formData.role;
+  if (currentStep === 2) valid = formData.ram !== null;
+  if (currentStep === 3) valid = !!formData.name;
+  if (currentStep === 4) valid = !!formData.server;
+  if (currentStep === 5) valid = !!formData.egg;
+  if (currentStep === 6) valid = true;
+  btn.disabled = !valid;
+  if (currentStep === 6) {
+    btn.innerHTML = '<i class="fa-brands fa-telegram"></i> Buat Panel di Bot';
+  } else {
+    btn.innerHTML = 'Lanjut <i class="fa-solid fa-arrow-right"></i>';
+  }
+  const percent = Math.round((currentStep / TOTAL_STEPS) * 100);
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressStep').textContent = 'Step ' + currentStep + ' dari ' + TOTAL_STEPS;
+  document.getElementById('progressPercent').textContent = percent + '%';
+}
+
+function nextStep() {
+  if (currentStep === 6) { submitCreate(); return; }
+  if (currentStep < TOTAL_STEPS) {
+    document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('active');
+    currentStep++;
+    document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
+    if (currentStep === 3) setTimeout(() => document.getElementById('panelName').focus(), 300);
+    if (currentStep === 6) updateReview();
+    updateNextBtn();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('active');
+    currentStep--;
+    document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
+    updateNextBtn();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    goHome();
+  }
+}
+
+function updateReview() {
+  document.getElementById('rvRole').textContent   = roleLabels[formData.role] || '-';
+  document.getElementById('rvRam').textContent    = ramLabels[formData.ram] || '-';
+  document.getElementById('rvName').textContent   = formData.name || '-';
+  document.getElementById('rvServer').textContent = serverLabels[formData.server] || '-';
+  document.getElementById('rvEgg').textContent    = eggLabels[formData.egg] || '-';
+}
+
+function resetCreateForm() {
+  currentStep = 1;
+  Object.keys(formData).forEach(k => formData[k] = null);
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.querySelector('.step[data-step="1"]').classList.add('active');
+  document.querySelectorAll('.opt-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('panelName').value = '';
+  document.getElementById('nameHint').textContent = 'Min 3, max 15 karakter • hanya huruf kecil & angka';
+  document.getElementById('nameHint').style.color = 'var(--text-dim)';
+  updateNextBtn();
+}
+
+function submitCreate() {
+  const payload = { r: formData.role, m: formData.ram, n: formData.name, s: formData.server, e: formData.egg };
+  const json = JSON.stringify(payload);
+  const base64 = btoa(unescape(encodeURIComponent(json)))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const botUrl = `https://t.me/CpanelhzzBot?start=cp_${base64}`;
+  showToast('🚀 Redirect ke bot...');
+  setTimeout(() => { window.open(botUrl, '_blank'); }, 600);
+}
+
+// ═══ VOUCHER ═══
+function validateVoucher() {
+  const input = document.getElementById('voucherCode');
+  const val = input.value.toUpperCase().trim();
+  input.value = val;
+  document.getElementById('btnRedeem').disabled = val.length < 4;
+}
+
+function redeemVoucher() {
+  const code = document.getElementById('voucherCode').value.trim().toUpperCase();
+  if (code.length < 4) return;
+  const botUrl = `https://t.me/CpanelhzzBot?start=vcr_${encodeURIComponent(code)}`;
+  showToast('🎫 Klaim voucher di bot...');
+  setTimeout(() => { window.open(botUrl, '_blank'); }, 600);
+}
+
+// ═══ MODAL ═══
+const modalContent = {
+  fast: {
+    ico: 'fa-bolt',
+    title: 'Fast Response',
+    body: `<p>Bot kita <b>online 24/7</b> dan respon cepat.</p>
+           <ul>
+             <li><b>Rata-rata respon:</b> &lt; 3 detik</li>
+             <li><b>Uptime:</b> 99.9%</li>
+             <li><b>Auto backup:</b> Tiap 5 menit</li>
+             <li><b>Anti-lag:</b> Optimized server</li>
+           </ul>`
+  },
+  miner: {
+    ico: 'fa-shield-halved',
+    title: 'Anti-Miner System',
+    body: `<p>Proteksi panel lu dari script mining / abuse CPU.</p>
+           <ul>
+             <li><b>Deteksi otomatis</b> kalo CPU &gt; 90%</li>
+             <li><b>Auto-suspend</b> kalo terdeteksi mining</li>
+             <li><b>Warning #1</b> dulu sebelum suspend</li>
+             <li><b>Notif DM</b> ke owner panel</li>
+           </ul>`
+  },
+  restart: {
+    ico: 'fa-chart-column',
+    title: 'Auto Restart',
+    body: `<p>Panel lu bisa auto-restart sesuai jadwal yang lu mau.</p>
+           <ul>
+             <li><b>Set jam</b> restart (contoh: 04:00 WIB)</li>
+             <li><b>Harian</b> atau custom</li>
+             <li><b>Multiple panel</b> sekaligus</li>
+             <li><b>Notif</b> setelah restart</li>
+           </ul>
+           <p style="margin-top:12px;font-size:12px;">Set via command: <code>/autorestartpanel NAMA JAM</code></p>`
+  }
+};
+
+function openModal(key) {
+  const data = modalContent[key];
+  if (!data) return;
+  document.getElementById('modalIco').innerHTML = `<i class="fa-solid ${data.ico}"></i>`;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalBody').innerHTML = data.body;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+
+// ═══ TOAST ═══
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ═══ BACK TO TOP ═══
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) backTop.style.display = 'flex';
+  else backTop.style.display = 'none';
+});
+backTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ═══ INIT ═══
+updateNextBtn();
+</script>
 </body>
 </html>
