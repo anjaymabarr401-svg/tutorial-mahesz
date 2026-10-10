@@ -1065,9 +1065,76 @@ function submitCreate() {
   const json = JSON.stringify(payload);
   const base64 = btoa(unescape(encodeURIComponent(json)))
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-  const botUrl = `https://t.me/CpanelhzzBot?start=cp_${base64}`;
-  showToast('🚀 Redirect ke bot...');
-  setTimeout(() => { window.open(botUrl, '_blank'); }, 600);
+
+  const cmd = `/start cp_${base64}`;
+
+  // Auto-copy ke clipboard
+  navigator.clipboard.writeText(cmd).then(() => {
+    showToast('📋 Command udah di-copy! Paste di chat bot');
+  }).catch(() => {
+    // Fallback kalo clipboard API gagal
+    const ta = document.createElement('textarea');
+    ta.value = cmd;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('📋 Command udah di-copy!');
+  });
+
+  // Tampilkan modal instruksi + tombol buka bot
+  setTimeout(() => {
+    showInstructionModal(cmd);
+  }, 800);
+}
+
+// ═══ MODAL INSTRUKSI ═══
+function showInstructionModal(cmd) {
+  const overlay = document.getElementById('modalOverlay');
+  const ico = document.getElementById('modalIco');
+  const title = document.getElementById('modalTitle');
+  const body = document.getElementById('modalBody');
+
+  ico.innerHTML = '<i class="fa-solid fa-clipboard-check"></i>';
+  title.textContent = 'Command Udah Di-Copy!';
+  body.innerHTML = `
+    <p><b>Langkah selanjutnya:</b></p>
+    <ol style="text-align:left;color:#ddd;font-size:13px;padding-left:20px;margin-bottom:18px;line-height:1.8;">
+      <li>Klik tombol <b>BUKA BOT</b> di bawah</li>
+      <li>Di chat bot, <b>tap kolom chat</b></li>
+      <li><b>Paste</b> command (tap & hold → Paste)</li>
+      <li>Kirim ke bot</li>
+    </ol>
+    <div style="background:rgba(0,0,0,0.5);border:1px dashed rgba(255,51,102,0.5);border-radius:8px;padding:10px;margin-bottom:18px;font-size:10px;color:#ff3366;font-family:'JetBrains Mono',monospace;word-break:break-all;max-height:80px;overflow-y:auto;">
+      ${cmd}
+    </div>
+  `;
+
+  // Ganti tombol jadi "BUKA BOT" + "COPY ULANG"
+  const btnArea = document.querySelector('.modal-card .modal-btn');
+  if (btnArea) {
+    btnArea.outerHTML = `
+      <a href="https://t.me/CpanelhzzBot" target="_blank" class="modal-btn" style="text-decoration:none;display:block;text-align:center;margin-bottom:8px;">
+        <i class="fa-brands fa-telegram"></i> BUKA BOT
+      </a>
+      <button class="modal-btn" onclick="copyCmd('${cmd.replace(/'/g, "\\'")}')" style="background:rgba(255,255,255,0.1);border:1px solid var(--border);margin-bottom:8px;">
+        <i class="fa-solid fa-copy"></i> COPY ULANG
+      </button>
+      <button class="modal-btn" onclick="closeModal()" style="background:rgba(255,255,255,0.06);">
+        Tutup
+      </button>
+    `;
+  }
+
+  overlay.classList.add('show');
+}
+
+function copyCmd(cmd) {
+  navigator.clipboard.writeText(cmd).then(() => {
+    showToast('📋 Command di-copy ulang!');
+  });
 }
 
 // ═══ VOUCHER ═══
